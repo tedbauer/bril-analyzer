@@ -5,6 +5,8 @@ use std::io::{self, Read};
 mod prog;
 use prog::Program;
 
+mod cfg;
+
 fn main() -> io::Result<()> {
     let mut buffer = String::new();
     let stdin = io::stdin();
@@ -13,7 +15,9 @@ fn main() -> io::Result<()> {
     handle.read_to_string(&mut buffer)?;
 
     let program: Program = serde_json::from_str(&buffer).unwrap();
-    println!("{}", program.functions[0].name);
-    println!("{}", serde_json::to_string(&program)?);
+    cfg::gen_cfg(program);
+
+    //println!("{}", program.functions[0].name);
+    //println!("{}", serde_json::to_string(&program)?);
     Ok(())
 }
