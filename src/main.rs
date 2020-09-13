@@ -7,6 +7,8 @@ use prog::Program;
 
 mod cfg;
 
+mod count_divs;
+
 fn main() -> io::Result<()> {
     let mut buffer = String::new();
     let stdin = io::stdin();
@@ -15,7 +17,9 @@ fn main() -> io::Result<()> {
     handle.read_to_string(&mut buffer)?;
 
     let program: Program = serde_json::from_str(&buffer).unwrap();
-    cfg::gen_cfg(program);
+    let div_count = count_divs::count_divs(&program.functions[0].instrs);
+    println!("Counted {} div statements.", div_count);
+    //cfg::gen_cfg(program);
 
     //println!("{}", program.functions[0].name);
     //println!("{}", serde_json::to_string(&program)?);
