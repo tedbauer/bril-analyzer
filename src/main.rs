@@ -17,7 +17,8 @@ fn main() -> io::Result<()> {
     handle.read_to_string(&mut buffer)?;
 
     let program: Program = serde_json::from_str(&buffer).unwrap();
-    let div_count = count_divs::count_divs(&program.functions[0].instrs);
+    //let div_count = count_divs::count_divs(&program.functions[0].instrs);
+    let div_count = count_divs::count_divs(&program);
     println!("Counted {} div statements.", div_count);
     //cfg::gen_cfg(program);
 
