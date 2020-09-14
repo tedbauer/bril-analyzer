@@ -1,4 +1,4 @@
-# Bril Analzyer
+# Bril Analyzer
 
 For [CS 6120][6120web]!
 
